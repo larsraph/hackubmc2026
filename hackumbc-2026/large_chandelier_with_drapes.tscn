@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dtom5qf3l3ubc"]
+
+[ext_resource type="Texture2D" uid="uid://ha6jnaedx87b" path="res://Assets/large-chandelier-with-drapes.png" id="1_4nlq4"]
+
+[node name="LargeChandelierWithDrapes" type="Sprite2D" unique_id=2036275827]
+scale = Vector2(0.038117815, 0.038117815)
+texture = ExtResource("1_4nlq4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=765150615]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=2109283541]
+polygon = PackedVector2Array(-603.3924, 209.87563, 577.15796, 209.87563, 839.5025, -26.234453, 891.97144, -157.40672, 891.97144, -341.04788, 787.03357, -341.04788, 787.03357, -104.93781, 577.15796, 104.93781, -603.3924, 104.93781, -813.26807, -157.40672, -813.26807, -393.51678, -891.97144, -393.51678, -891.97144, -78.70336)

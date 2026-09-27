@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b8676vdknf8cd"]
+
+[ext_resource type="Texture2D" uid="uid://b50ri24gtp2cu" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 1.png" id="1_h2sou"]
+[ext_resource type="Texture2D" uid="uid://co7pyon0odkhs" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 2.png" id="2_xyp1c"]
+[ext_resource type="Texture2D" uid="uid://ytgacdhebhuk" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 3.png" id="3_fhcqm"]
+[ext_resource type="Texture2D" uid="uid://drewky32s20cy" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 4.png" id="4_8uld2"]
+[ext_resource type="Texture2D" uid="uid://boba44mgr8yc4" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 5.png" id="5_s7m60"]
+[ext_resource type="Texture2D" uid="uid://b86rwblq7y8f6" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 6.png" id="6_mg0en"]
+[ext_resource type="Texture2D" uid="uid://bsechehd2rxgn" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 7.png" id="7_s4oc5"]
+[ext_resource type="Texture2D" uid="uid://cnd7x4ni4cbb2" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 8.png" id="8_ya4w6"]
+[ext_resource type="Texture2D" uid="uid://ytp4pop6ecud" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 9.png" id="9_rkoqo"]
+[ext_resource type="Texture2D" uid="uid://bcq1bpwrr1kal" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 10.png" id="10_6tjkt"]
+[ext_resource type="Texture2D" uid="uid://cujdhix8c5vli" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 11.png" id="11_y0yfh"]
+[ext_resource type="Texture2D" uid="uid://bxixdsdc0x4ka" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 12.png" id="12_wgbwb"]
+[ext_resource type="Texture2D" uid="uid://dix1ap74wpmk2" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 13.png" id="13_4jgo6"]
+[ext_resource type="Texture2D" uid="uid://b77ecv7ajiwe" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 14.png" id="14_00qwu"]
+[ext_resource type="Texture2D" uid="uid://vay1633nnokd" path="res://SLEEPING_DRAGON(1)/SLEEPING_DRAGON - 15.png" id="15_jgf72"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3xgvu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h2sou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xyp1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fhcqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8uld2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s7m60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mg0en")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_s4oc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ya4w6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rkoqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6tjkt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_y0yfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_wgbwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_4jgo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_00qwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_jgf72")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Dragon" type="Node2D" unique_id=27214969]
+scale = Vector2(1.6019108, 1.6019108)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1931345914]
+sprite_frames = SubResource("SpriteFrames_3xgvu")
+flip_h = true

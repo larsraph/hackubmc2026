@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://1undke8d3ywk"]
+
+[ext_resource type="Texture2D" uid="uid://chnhj7e31w3r7" path="res://Assets/UntitledArtwork2 - 1.png" id="1_74bdg"]
+
+[sub_resource type="GDScript" id="GDScript_e4ynd"]
+script/source = "extends Node2D
+
+@export var a: RigidBody2D
+@export var b: RigidBody2D
+@export var sprite: Sprite2D
+
+@export var max_rotation_speed: float = 400 * PI
+
+var last = Vector2(0, 0)
+
+func _physics_process(delta: float) -> void:
+	var avg = (a.global_position + b.global_position) / 2.0
+
+	sprite.global_position = avg
+
+	var line = (b.global_position - a.global_position) / 2.0
+
+	sprite.global_rotation = line.angle()
+
+	var mouse_position = get_global_mouse_position()
+	var target_angle = avg.direction_to(mouse_position).angle()
+
+	var delta_angle = wrapf(
+		target_angle - line.angle(),
+		-PI,
+		PI
+	)
+
+	# Limit how much the body pair can rotate in one physics frame.
+	var max_angle_change = max_rotation_speed * delta
+	delta_angle = clamp(
+		delta_angle,
+		-max_angle_change,
+		max_angle_change
+	)
+
+	# Calculate where B would be after rotating around the midpoint.
+	var rotated_line = line.rotated(delta_angle)
+
+	# This is B's desired displacement.
+	var displacement = rotated_line - line
+
+	# Convert displacement into velocity.
+	var velocity = displacement / delta
+
+	# Same logic as before:
+	# remove last frame's rotational velocity,
+	# then add this frame's desired rotational velocity.
+	var velocity_change_b = velocity - last
+	var velocity_change_a = -velocity_change_b
+
+	# F = m * Δv / Δt
+	var force_b = velocity_change_b * b.mass / delta
+	var force_a = velocity_change_a * a.mass / delta
+
+	b.apply_central_force(force_b)
+	a.apply_central_force(force_a)
+
+	last = velocity
+"
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e4ynd"]
+friction = 200.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qp14v"]
+radius = 2.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r76a6"]
+friction = 200.0
+
+[node name="Sword" type="Node2D" unique_id=1298782983 node_paths=PackedStringArray("a", "b", "sprite")]
+script = SubResource("GDScript_e4ynd")
+a = NodePath("RigidBody2D")
+b = NodePath("RigidBody2D2")
+sprite = NodePath("SwordSprite")
+
+[node name="SwordSprite" type="Sprite2D" parent="." unique_id=1892712486]
+position = Vector2(0, -2.5)
+texture = ExtResource("1_74bdg")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="." unique_id=1709994751]
+position = Vector2(-29, 0)
+rotation = -1.5707964
+node_a = NodePath("../RigidBody2D")
+node_b = NodePath("../RigidBody2D2")
+length = 55.0
+rest_length = 55.0
+stiffness = 64.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=248195849]
+position = Vector2(26, 0)
+physics_material_override = SubResource("PhysicsMaterial_e4ynd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=109225135]
+shape = SubResource("CircleShape2D_qp14v")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="." unique_id=906231952]
+position = Vector2(-29, 0)
+physics_material_override = SubResource("PhysicsMaterial_r76a6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2" unique_id=1647663645]
+shape = SubResource("CircleShape2D_qp14v")

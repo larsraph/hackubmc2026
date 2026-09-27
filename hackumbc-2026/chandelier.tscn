@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://66g0i302v7wx"]
+
+[ext_resource type="Texture2D" uid="uid://ha6jnaedx87b" path="res://Assets/large-chandelier-with-drapes.png" id="1_g8dmd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g8dmd"]
+radius = 1.0
+
+[node name="Chandelier" type="Node2D" unique_id=2031550108]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="." unique_id=392236998]
+position = Vector2(0, -60)
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1401226423]
+position = Vector2(0, -60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1139860166]
+shape = SubResource("CircleShape2D_g8dmd")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1219523517]
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=1295582909]
+scale = Vector2(0.053, 0.053)
+texture = ExtResource("1_g8dmd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D" unique_id=369454264]
+polygon = PackedVector2Array(-46, -4, -32, 11, 32, 11, 44, -1, 52, -21, 40, -20, 42, -14, 39, -1, 30, 7, -31, 7, -41, -4, -43, -15, -39, -21, -52, -21, -49, -13)

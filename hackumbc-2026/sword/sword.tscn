@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bem3ey5gtyamb"]
+
+[ext_resource type="Script" uid="uid://cm1u11n0b2k63" path="res://sword/sword.gd" id="1_8ykyu"]
+[ext_resource type="Texture2D" uid="uid://chnhj7e31w3r7" path="res://Assets/UntitledArtwork2 - 1.png" id="1_b3h16"]
+[ext_resource type="AudioStream" uid="uid://254vm3f1heph" path="res://kenney_impact-sounds/Audio/impactMetal_heavy_000.ogg" id="3_573et"]
+[ext_resource type="AudioStream" uid="uid://rgmsdumoct13" path="res://kenney_impact-sounds/Audio/impactMetal_heavy_001.ogg" id="4_85gpq"]
+[ext_resource type="AudioStream" uid="uid://rl3njsrda8qq" path="res://kenney_impact-sounds/Audio/impactMetal_heavy_002.ogg" id="5_0g2ow"]
+[ext_resource type="AudioStream" uid="uid://kr42ni2prhfp" path="res://kenney_impact-sounds/Audio/impactMetal_heavy_003.ogg" id="6_74h8e"]
+[ext_resource type="AudioStream" uid="uid://ck00d5nwbpmut" path="res://kenney_impact-sounds/Audio/impactMetal_heavy_004.ogg" id="7_lvkyp"]
+[ext_resource type="AudioStream" uid="uid://cb4w8mqkqnpvq" path="res://kenney_impact-sounds/Audio/impactWood_medium_000.ogg" id="8_85gpq"]
+[ext_resource type="AudioStream" uid="uid://cxwnushqyal8k" path="res://kenney_impact-sounds/Audio/impactWood_medium_002.ogg" id="9_74h8e"]
+[ext_resource type="AudioStream" uid="uid://bevabxyip6sm5" path="res://kenney_impact-sounds/Audio/impactWood_medium_003.ogg" id="10_lvkyp"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pkg7o"]
+friction = 20000.0
+rough = true
+bounce = 2000.0
+absorbent = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b3h16"]
+radius = 1.25
+height = 28.5
+
+[node name="Sword" type="RigidBody2D" unique_id=1197596656 node_paths=PackedStringArray("no_friction", "coyote", "dash", "players")]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_pkg7o")
+center_of_mass_mode = 1
+center_of_mass = Vector2(7, 0)
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_8ykyu")
+no_friction = NodePath("NoFriction")
+coyote = NodePath("Coyote")
+dash = [NodePath("Dash"), NodePath("Dash2"), NodePath("Dash3")]
+players = [NodePath("AudioStreamPlayer2D"), NodePath("AudioStreamPlayer2D2"), NodePath("AudioStreamPlayer2D3"), NodePath("AudioStreamPlayer2D4"), NodePath("AudioStreamPlayer2D5")]
+
+[node name="Sword" type="Sprite2D" parent="." unique_id=643511117]
+position = Vector2(0.75, -1.25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_b3h16")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1022050737]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_b3h16")
+
+[node name="NoFriction" type="Timer" parent="." unique_id=444277711]
+wait_time = 0.1
+one_shot = true
+
+[node name="Coyote" type="Timer" parent="." unique_id=38972178]
+wait_time = 0.1
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1562034579]
+stream = ExtResource("3_573et")
+volume_db = -80.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=975064554]
+stream = ExtResource("4_85gpq")
+volume_db = -80.0
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="." unique_id=810497811]
+stream = ExtResource("5_0g2ow")
+volume_db = -80.0
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="." unique_id=1060306898]
+stream = ExtResource("6_74h8e")
+volume_db = -80.0
+
+[node name="AudioStreamPlayer2D5" type="AudioStreamPlayer2D" parent="." unique_id=1123581503]
+stream = ExtResource("7_lvkyp")
+volume_db = -80.0
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="." unique_id=1479624184]
+stream = ExtResource("8_85gpq")
+volume_db = 12.0
+
+[node name="Dash2" type="AudioStreamPlayer2D" parent="." unique_id=835939487]
+stream = ExtResource("9_74h8e")
+volume_db = 12.0
+
+[node name="Dash3" type="AudioStreamPlayer2D" parent="." unique_id=932343073]
+stream = ExtResource("10_lvkyp")
+volume_db = 12.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="NoFriction" to="." method="_on_override_timeout"]
